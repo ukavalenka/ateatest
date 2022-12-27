@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ATEATECHNICAL.App
+﻿namespace ATEATECHNICAL.App
 {
     internal class Program
     {

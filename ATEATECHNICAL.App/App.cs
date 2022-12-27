@@ -5,16 +5,12 @@ using ATEATECHNICAL.Utils.Extensions;
 using ATEATECHNICAL.Utils.Interfaces;
 using ATEATECHNICAL.Utils.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ATEATECHNICAL.App
 {
     public class App
     {
-        //private const int MaxArgumentLength = 50;
-
         private string _arg1;
         private string _arg2;
         private bool _isStopRequested;
@@ -24,7 +20,7 @@ namespace ATEATECHNICAL.App
         public App()
         {
             _isStopRequested = false;
-            _logger = new Logger();
+            _logger = new ConsoleLogger();
             
             _repository = new ArgumentsRepository(_logger);
         }
@@ -36,7 +32,7 @@ namespace ATEATECHNICAL.App
 
         public void Dispose()
         {
-            //_repository.Dispose();
+            _repository.Dispose();
         }
 
         public void Run(string[] arguments = null)

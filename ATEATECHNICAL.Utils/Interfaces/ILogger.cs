@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ATEATECHNICAL.Utils.Interfaces
+﻿namespace ATEATECHNICAL.Utils.Interfaces
 {
     public interface ILogger
     {

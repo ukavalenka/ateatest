@@ -1,11 +1,9 @@
 ﻿using ATEATECHNICAL.Utils.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ATEATECHNICAL.Utils
 {
-    public class Logger : ILogger
+    public class ConsoleLogger : ILogger
     {
         public void Log(string message)
         {

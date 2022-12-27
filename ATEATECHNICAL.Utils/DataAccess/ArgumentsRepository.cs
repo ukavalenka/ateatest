@@ -4,7 +4,6 @@ using LiteDB;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 
 namespace ATEATECHNICAL.Utils.DataAccess
 {
@@ -27,23 +26,6 @@ namespace ATEATECHNICAL.Utils.DataAccess
             {
                 _logger.Log($"Cannot open database {ex.Message}");
             }
-            
-            
-
-            //if (databaseFilename != null) _databaseFileName = databaseFilename;
-            //_databaseFilePath = Path.Combine(Utilities.GetExecutableDirectoryPath(), _databaseFileName);
-
-            //if (!File.Exists(_databaseFilePath)) CreateDatabase(_databaseFilePath);
-
-            //try
-            //{
-            //    _connection = new SQLiteConnection($"Data Source={_databaseFilePath}; Version=3;");
-            //    _connection.Open();
-            //}
-            //catch (Exception e)
-            //{
-            //    _logger.LogError($"Wasn't able to open database connection. Message: {e.Message}");
-            //}
         }
         
 
@@ -54,11 +36,13 @@ namespace ATEATECHNICAL.Utils.DataAccess
             return collection.FindAll();
         }
 
-        public void Insert(ArgumentsModel entity)
+        public ArgumentsModel Insert(ArgumentsModel entity)
         {
             var collection = _liteDatabase.GetCollection<ArgumentsModel>();
 
             collection.Insert(entity);
+
+            return entity;
         }
 
         public void Dispose()
