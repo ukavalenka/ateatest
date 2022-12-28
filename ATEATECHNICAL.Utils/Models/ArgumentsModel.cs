@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ATEATECHNICAL.Utils.Models
+﻿namespace ATEATECHNICAL.Utils.Models
 {
     public class ArgumentsModel : BaseModel
     {
