@@ -1,50 +1,39 @@
 # ATEA Technical task
 
-This is a .NET Core console application which consists of 4 projects:
+This is a .NET Core console application which consists of 3 projects:
 
- - Command line interface "CLI.csproj". It's responsible for console input/output;
- - Data access layer "DataAccsess.csproj". It's essentially a repository wrapper aroung SQLite.
- - Unit tests project "ATEA_TechnicalTask.Tests.csproj".
- - Class library "ATEA_TechnicalTask.Shared.csproj". It contains commonly used utility classes and interfaces.
+ - Console project "ATEATECNICAL.App.csproj"  is responsible for console input/output and communication with user;
+ - Utilities project "ATEATECHNICAL.Utils.csproj" contains commonly used utility classes and interfaces and data access classes.
+ - Unit tests project "ATEATECHNICAL.Tests.csproj".
 
-## CLI
 
-![Alt text](/readme_screenshot.jpg)
+## Example of usage
+![Alt text](/usageexample.jpg) 
 
-CLI works by offering to choose one of the available actions from the menu and executing action depending on the user's input. The process repeats itself in a loop until the **"Quit"** action is chosen.  
+## ATEATECNICAL.App
 
-The program supports two arguments, which can be set via command line arguments at the start of the application, or through the corresponding action in app menu.  
+The program supports two arguments, which can be set via command line arguments at the start of the application, or through the action in app menu.
 
-To add arguments together user must enter arguments first. After that the **"Add arguments to each other"** menu options will appear. Every arguments input will result in a database insert of those arguments. List of all previously used arguments can be viewed by selecting **"List previous arguments"** menu option.  
+Menu contains such options: **Set argumets**, **Add arguments to each other**, **Print all arguments stored in the database**, **Quit**.
 
-To set one of the previously used set of arguments as the current user must select the **"Fetch and set arguments from database by id"** option.  
+**Set arguments option is shown when no arguments provided on the start of application, if arguments were set
+**Set new argumets option will appear. Every arguments insert will result into inserting this arguments to database. If awrong amount arguments were provided error will appear. 
+**Input errors handling were implemention through try/catch and custom exception class (InvalidInputException).
+**Add argumnets to each other is implemented through the extension helper method that tries to parse arguments as int, floats and decimals and if successful then print addition result, if not then concatenate arguments as strings.
+**Print all arguments stored in the database is used for selectiong from database and printing all previously used arguments.
 
-Sets of arguments can be deleted from the database by selecting the **"Delete arguments from database by id"** option.  
+Methods in *App.cs* are mostly used for handling user input and help with console printing.
 
-**Input error handling** is implemented through try/catch, custom exception class (InvalidInputException) and custom Logger class.  
+## ATEATECHNICAL.Utils
 
-Most of the application methods are helper methods, designed to help with the console printing.  
+This project is used as SDK and stores all application tools. It contains *Interfaces*, *Data access*, *Custom exceptions*, *Extensions*, *Models*, *Logger*.
 
-**Arguments addition** is implemented through an extension method to the main App class. The method tries to parse string arguments first as ints, then as floats. If neither of the parsing steps worked method simply concatenates string arguments and returns the result.   
+**Data access** was build by implementing the *Repository* pattern, which is reflected in generic IRepository<T> interface and *ArgumentsRepository* class, which is implementing interface for the *ArgumentsModel* class. For the database **LiteDB** implementation was used. Because of it's simplicity and convenience.
 
-**Unit tests** of the addition method are located in the "ATEA_TechnicalTask.Tests" project.
 
-## DataAccess
+## ATEATECHNICAL.Tests
+The project contains unit tests for the App class extension method.
 
-DataAccess is the project responsible for database interactions. It was built by implementing the **"Repository" pattern**, which is reflected in generic IRepository interface and ArgumentsRepository class, which implements the interface for the corresponding model: ArgumentsRecord class.  
 
-For the SQL database **ADO + SQLite .NET Core** implementation was used (via nuget packages), because of it's simplicity and convenience.  
+-- Add example of usage
 
-The application creates a new database file with table (if it doesn't already exist) right next to it's executable. The single added **table** has three columns: id -> int, arg1 -> nvarchar(50), arg2 -> nvarchar(50).  
-
-**Unit tests** for the repository implementation are located in the "ATEA_TechnicalTask.Tests" project.
-
-## ATEA_TechnicalTask.Tests
-The project contains unit tests for the App class extension method and ArgumentsRepository repository implementation class.  
-
-Repository tests are supplemented with a fixture class, which is responsible for separate test database creation at the the start of the test run.
-
-## ATEA_TechnicalTask.Shared
-The project was introduced to avoid the cyclic project reference issue. It consists of classes and intefaces commonly used among other projects: ILogger interface, ConsoleLogger implementation and Utility class.  
-
-ILogger interface was added to abstract out the logging process from logger implementation details.
