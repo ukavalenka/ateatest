@@ -16,11 +16,10 @@ The program supports two arguments, which can be set via command line arguments 
 
 Menu contains such options: **Set argumets**, **Add arguments to each other**, **Print all arguments stored in the database**, **Quit**.
 
-**Set arguments option is shown when no arguments provided on the start of application, if arguments were set
-**Set new argumets option will appear. Every arguments insert will result into inserting this arguments to database. If awrong amount arguments were provided error will appear. 
-**Input errors handling were implemention through try/catch and custom exception class (InvalidInputException).
-**Add argumnets to each other is implemented through the extension helper method that tries to parse arguments as int, floats and decimals and if successful then print addition result, if not then concatenate arguments as strings.
-**Print all arguments stored in the database is used for selectiong from database and printing all previously used arguments.
+ - *Set arguments* option is shown when no arguments provided on the start of application, if arguments were set *Set new argumets8 option will appear. Every arguments insert will result into inserting this arguments to database. If awrong amount arguments were provided error will appear. 
+ - *Input errors handling* were implemention through try/catch and custom exception class (InvalidInputException).
+ - *Add argumnets to each other* is implemented through the extension helper method that tries to parse arguments as int, floats and decimals and if successful then print addition result, if not then concatenate arguments as strings.
+ - *Print all arguments stored in the database* is used for selectiong from database and printing all previously used arguments.
 
 Methods in *App.cs* are mostly used for handling user input and help with console printing.
 
