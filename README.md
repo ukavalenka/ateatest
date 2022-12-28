@@ -36,6 +36,3 @@ This project is used as SDK and stores all application tools. It contains *Inter
 ## ATEATECHNICAL.Tests
 The project contains unit tests for the App class extension method.
 
-
--- Add example of usage
-
