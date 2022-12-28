@@ -11,7 +11,6 @@ namespace ATEATECHNICAL.Utils.Extensions
             TryAddArgsAsInteger,
             TryAddArgsAsFloat,
             TryAddArgsAsDecimal,
-            //TryAddArgsAsDouble,
         };
 
         delegate bool TestDelegate(string arg1, string arg2, out string sum);

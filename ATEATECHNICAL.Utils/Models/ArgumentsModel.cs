@@ -23,5 +23,12 @@ namespace ATEATECHNICAL.Utils.Models
             Arg2 = arg2;
             Id = id;
         }
+
+        public ArgumentsModel(ArgumentsModel model)
+        {
+            Arg1 = model.Arg1;
+            Arg2 = model.Arg2;
+            Id = model.Id;
+        }
     }
 }

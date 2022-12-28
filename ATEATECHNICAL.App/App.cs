@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace ATEATECHNICAL.App
 {
-    public class App
+    public class App : IDisposable
     {
         private string _arg1;
         private string _arg2;

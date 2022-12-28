@@ -29,20 +29,42 @@ namespace ATEATECHNICAL.Utils.DataAccess
         }
         
 
-        public IEnumerable<ArgumentsModel> GetAll()
+        public List<ArgumentsModel> GetAll()
         {
-            var collection = _liteDatabase.GetCollection<ArgumentsModel>();
+            var result = new List<ArgumentsModel>();
 
-            return collection.FindAll();
+            try
+            {
+                var collection = _liteDatabase.GetCollection<ArgumentsModel>();
+                foreach(var element in collection.FindAll())
+                {
+                    result.Add(element);
+                };
+            }
+            catch(Exception ex)
+            {
+                _logger.Log($"Cannot read arguments from database. {ex.Message}");
+            }
+            
+
+            return result;
         }
 
         public ArgumentsModel Insert(ArgumentsModel entity)
         {
-            var collection = _liteDatabase.GetCollection<ArgumentsModel>();
+            var result = new ArgumentsModel(entity);
 
-            collection.Insert(entity);
+            try
+            {
+                var collection = _liteDatabase.GetCollection<ArgumentsModel>();
+                result.Id = collection.Insert(entity).AsInt32;
+            }
+            catch (Exception ex)
+            {
+                _logger.Log($"Cannot insert argument to database. {ex.Message}");
+            }
 
-            return entity;
+            return result;
         }
 
         public void Dispose()

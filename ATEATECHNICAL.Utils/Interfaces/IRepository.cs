@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ATEATECHNICAL.Utils.Models;
+using System;
 using System.Collections.Generic;
 
 namespace ATEATECHNICAL.Utils.Interfaces
 {
-    public interface IRepository<T> : IDisposable where T : class
+    public interface IRepository<T> : IDisposable where T : BaseModel
     {
-        IEnumerable<T> GetAll();
+        List<T> GetAll();
         T Insert(T entity);
     }
 }
