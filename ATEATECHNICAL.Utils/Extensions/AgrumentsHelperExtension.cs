@@ -6,19 +6,19 @@ namespace ATEATECHNICAL.Utils.Extensions
 {
     public static class AgrumentsHelperExtension
     {
-        private static List<TestDelegate> testDelegates = new List<TestDelegate>()
+        private static List<ArgumentHandlerDelegate> argumentsHandlers = new List<ArgumentHandlerDelegate>()
         {
             TryAddArgsAsInteger,
             TryAddArgsAsFloat,
             TryAddArgsAsDecimal,
         };
 
-        delegate bool TestDelegate(string arg1, string arg2, out string sum);
+        delegate bool ArgumentHandlerDelegate(string arg1, string arg2, out string sum);
         public static string AddArgument(this string arg1, string arg2)
         {
-            foreach (TestDelegate testDelegate in testDelegates)
+            foreach (ArgumentHandlerDelegate handler in argumentsHandlers)
             {
-                if(testDelegate(arg1, arg2, out string result))
+                if(handler(arg1, arg2, out string result))
                 {
                     return result;
                 }
